@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pairwise Alignment Tool</title>
+</head>
+<body>
+
+<h2>Sequence Alignment Tool</h2>
+
+<form method="POST">
+    <label>Query Sequence:</label><br>
+    <input type="text" name="query"><br><br>
+
+    <label>Target Sequence:</label><br>
+    <input type="text" name="target"><br><br>
+
+    <label>Mode:</label><br>
+    <select name="mode">
+        <option value="global">Global</option>
+        <option value="local">Local</option>
+    </select><br><br>
+
+    <button type="submit">Align</button>
+</form>
+
+<hr>
+
+{% if result %}
+    {% if result.error %}
+        <p style="color:red;">{{ result.error }}</p>
+    {% else %}
+        <h3>Best Alignment</h3>
+        <pre>{{ result.best_alignment }}</pre>
+
+        <p><b>Score:</b> {{ result.score }}</p>
+        <p><b>Regions:</b> {{ result.regions }}</p>
+    {% endif %}
+{% endif %}
+
+</body>
+</html>
